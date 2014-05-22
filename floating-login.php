@@ -101,7 +101,7 @@ function fl_settings_page() {
 <?php } 
 //login/register/logout floating box 
 wp_enqueue_style( 'floating-login', plugin_dir_url( __FILE__ ).'style.css' );
-add_action('builder_layout_engine_render_header', 'floating_login', 20 );
+add_action('wp_head', 'floating_login', 20 );
 function floating_login() { 
 	/** Logout element **/
     if ( is_user_logged_in() ) { ?>

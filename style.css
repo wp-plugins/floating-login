@@ -1,7 +1,7 @@
 /*********************************************
 	Floating login/registration box;
 *********************************************/
-
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 .login-float-container{
 	border-top:none;
 	margin:0 auto 0 auto;	
@@ -15,11 +15,13 @@
 	border-bottom-right-radius:5px;
 	border-bottom-left-radius:5px;
 	border-style:solid;
-	box-shadow:1px 1px 1px #666 ;
-	font-size:1.5em;
+	box-shadow:1px 1px 1px #666;
+	font-family: 'Open Sans', sans-serif;
+	font-size:17px;
 	border-top:none;
 	botder-width:1px;
 	background-color:#fff;
+
 }
 .login-float-login,
 .login-float-register
@@ -46,5 +48,11 @@
 .login-float-login a:hover,
 .login-float-register a:hover
 {
+	-webkit-transition: all .1s ease-in;
+	-moz-transition: all .1s ease-in;
+	-o-transition: all .1s ease-in;
+	-ms-transition: all .1s ease-in;
+	transition: all .1s ease-in;
 	color:#c9c9c9 !important;	
+	text-decoration:none;
 }
