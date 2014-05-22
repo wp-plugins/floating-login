@@ -1,0 +1,50 @@
+/*********************************************
+	Floating login/registration box;
+*********************************************/
+
+.login-float-container{
+	border-top:none;
+	margin:0 auto 0 auto;	
+	height:35px;
+	width:150px;
+	position:fixed;
+	z-index:100;
+	top:0px;
+	right:100px;
+	text-align:center;
+	border-bottom-right-radius:5px;
+	border-bottom-left-radius:5px;
+	border-style:solid;
+	box-shadow:1px 1px 1px #666 ;
+	font-size:1.5em;
+	border-top:none;
+	botder-width:1px;
+	background-color:#fff;
+}
+.login-float-login,
+.login-float-register
+{
+	display:inline;
+}
+.login-float-login a,
+.login-float-register a
+{
+	font-weight:bold;
+	font-size:0.9em;
+	text-decoration:none;
+	color:#000;
+}
+.login-float-login{	
+	margin-right:-1px;
+}
+.login-float-register{
+	padding-left:2px ;	
+}
+.login-float-container:hover{
+	cursor:hand;
+}
+.login-float-login a:hover,
+.login-float-register a:hover
+{
+	color:#c9c9c9 !important;	
+}
