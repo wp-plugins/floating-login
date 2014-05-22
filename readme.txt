@@ -18,9 +18,9 @@ A floating element that either displays login/ register or logout, depending on 
 3. Customise though the floating login panel under settins in your admin area
 
 == Screenshots ==
-1. login
+1. Login / Register
 2. logout
-3. settings
+3. Settings Page
 
 == Changelog ==
 1.0.0: Plugin created and uploaded to wordpress plugins directory
