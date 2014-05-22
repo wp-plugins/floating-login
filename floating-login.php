@@ -117,7 +117,7 @@ function floating_login() {
             ">
 			<div class="login-float-login" >
             <a style="color:<?php echo get_option('fl_text_color');?>"
-				href="<?php echo get_option('fl_login_url');?>" 
+				href="<?php wp_logout(); ?> " 
                 title="Logout">Logout</a>
 			</div>
 		</div>
