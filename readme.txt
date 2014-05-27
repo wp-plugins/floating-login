@@ -23,7 +23,7 @@ A floating element that either displays login/ register or logout, depending on 
 == Screenshots ==
  
 1. Login / Register
-2. logout
+2. Logout
 3. Settings Page
 
 == Changelog ==

@@ -3,7 +3,7 @@
 	Plugin Name: Floating login
 	Plugin URI: TBD
 	Description: Displays a login/register floating element
-	Version: 1.0.0
+	Version: 1.0.3
 	Author: Inspired Information Services
 	Author URI: www.inspired-is.com
 
