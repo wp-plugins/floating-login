@@ -3,7 +3,7 @@
 	Plugin Name: Floating login
 	Plugin URI: http://www.inspired-plugins.com/
 	Description: Displays a login/register floating element
-	Version: 1.0.5
+	Version: 1.0.6
 	Author: Inspired Information Services
 	Author URI: www.inspired-is.com
 
@@ -31,11 +31,6 @@ function fl_create_menu() {
 	//create new top-level menu
 	add_options_page('Floating Login Settings', 'Floating Login Settings', 'activate_plugins', __FILE__, 'fl_settings_page');
 
-	//call register settings function
-	add_action( 'admin_init', 'register_mysettings' );
-	if ( !current_user_can( 'activate_plugins' ) )  {
-		wp_die( __( 'You do not have suffficient permissions to access this page.' ) );
-	}
 }
 
 

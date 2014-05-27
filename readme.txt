@@ -46,3 +46,6 @@ A floating element that either displays login/ register or logout, depending on 
 
 = 1.0.5 =
 * Yet more bug fixes
+
+= 1.0.6 =
+* Fix for non admin users being locked out of back end
