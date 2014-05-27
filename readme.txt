@@ -43,3 +43,6 @@ A floating element that either displays login/ register or logout, depending on 
 = 1.0.4 =
 * Some bug fixes and optimization
 * Removed screenshots from download
+
+= 1.0.5 =
+* Yet more bug fixes

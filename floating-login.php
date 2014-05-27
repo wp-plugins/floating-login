@@ -3,7 +3,7 @@
 	Plugin Name: Floating login
 	Plugin URI: http://www.inspired-plugins.com/
 	Description: Displays a login/register floating element
-	Version: 1.0.4
+	Version: 1.0.5
 	Author: Inspired Information Services
 	Author URI: www.inspired-is.com
 
@@ -126,7 +126,7 @@ function floating_login() {
             ">
 			<div class="login-float-login" >
             <a style="color:<?php echo get_option('fl_text_color');?>"
-				href="<?php wp_logout(); ?> " 
+				href="<?php echo wp_logout_url( home_url() ); ?>" 
                 title="Logout">Logout</a>
 			</div>
 		</div>
