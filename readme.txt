@@ -22,17 +22,17 @@ A floating element that either displays login/ register or logout, depending on 
 
 == Screenshots ==
 
-1. Login / Register
-2. logout
-3. Settings Page
+* Login / Register
+* logout
+* Settings Page
 
 == Changelog ==
 
 = 1.0.0 =
-Plugin created and uploaded to wordpress plugins directory
+* Plugin created and uploaded to wordpress plugins directory
 
 = 1.0.1 =
-Bug fixes and readme updated
+* Bug fixes and readme updated
 
 = 1.0.2 =
-Major Bug fixes and screenshots added
+* Major Bug fixes and screenshots added
