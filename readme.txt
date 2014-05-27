@@ -28,6 +28,11 @@ A floating element that either displays login/ register or logout, depending on 
 
 == Changelog ==
 
-1.0.0: Plugin created and uploaded to wordpress plugins directory
-1.0.1: Bug fixes and readme updated
-1.0.2: Major Bug fixes and screenshots added
+= 1.0.0 =
+Plugin created and uploaded to wordpress plugins directory
+
+= 1.0.1 =
+Bug fixes and readme updated
+
+= 1.0.2 =
+Major Bug fixes and screenshots added
