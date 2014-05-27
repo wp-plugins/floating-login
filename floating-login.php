@@ -1,9 +1,9 @@
 <?php
 /*
 	Plugin Name: Floating login
-	Plugin URI: TBD
+	Plugin URI: http://www.inspired-plugins.com/
 	Description: Displays a login/register floating element
-	Version: 1.0.3
+	Version: 1.0.4
 	Author: Inspired Information Services
 	Author URI: www.inspired-is.com
 
@@ -100,7 +100,16 @@ function fl_settings_page() {
 </div>
 <?php } 
 //login/register/logout floating box 
-wp_enqueue_style( 'floating-login', plugin_dir_url( __FILE__ ).'style.css' );
+add_action( 'wp_enqueue_scripts', 'safely_add_stylesheet' );
+
+/**
+* Add stylesheet to the page
+*/
+function safely_add_stylesheet() {
+	wp_enqueue_style( 'floating-login', plugins_url('style.css', __FILE__) );
+}
+
+
 add_action('wp_head', 'floating_login', 20 );
 function floating_login() { 
 	/** Logout element **/

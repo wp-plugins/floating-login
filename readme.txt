@@ -36,3 +36,10 @@ A floating element that either displays login/ register or logout, depending on 
 
 = 1.0.2 =
 * Major Bug fixes and screenshots added
+
+= 1.0.3 =
+* Minor bug fixes 
+
+= 1.0.4 =
+* Some bug fixes and optimization
+* Removed screenshots from download
