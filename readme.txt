@@ -18,7 +18,7 @@ A floating element that either displays login/ register or logout, depending on 
 
 1. Upload `floating-login.zip` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the \'Plugins\' menu in WordPress
-3. Customise though the floating login panel under settins in your admin area
+3. Customise though the floating login panel under settings in your admin area
 
 == Screenshots ==
  
@@ -49,3 +49,8 @@ A floating element that either displays login/ register or logout, depending on 
 
 = 1.0.6 =
 * Fix for non admin users being locked out of back end
+
+= 1.0.7 =
+* Added ability to disable the register button
+* Adjusted the help tips to be easier to understand
+* Fix for options not saving 

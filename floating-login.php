@@ -3,7 +3,7 @@
 	Plugin Name: Floating login
 	Plugin URI: http://www.inspired-plugins.com/
 	Description: Displays a login/register floating element
-	Version: 1.0.6
+	Version: 1.0.7
 	Author: Inspired Information Services
 	Author URI: www.inspired-is.com
 
@@ -25,9 +25,9 @@
 
 // create custom plugin settings menu
 add_action('admin_menu', 'fl_create_menu');
-
+add_action( 'admin_init', 'register_mysettings' );
 function fl_create_menu() {
-
+	
 	//create new top-level menu
 	add_options_page('Floating Login Settings', 'Floating Login Settings', 'activate_plugins', __FILE__, 'fl_settings_page');
 
@@ -42,6 +42,8 @@ function register_mysettings() {
 	register_setting( 'fl-settings-group', 'fl_border_color' );
 	register_setting( 'fl-settings-group', 'fl_text_color' );
 	register_setting( 'fl-settings-group', 'fl_border_width' );
+	register_setting( 'fl-settings-group', 'fl_register_display');
+
 }
 
 function fl_settings_page() {
@@ -50,19 +52,26 @@ function fl_settings_page() {
 <h2>Floating Login Settings</h2>
 
 <form method="post" action="options.php">
-    <?php settings_fields( 'fl-settings-group' ); ?>
-    <?php do_settings_sections( 'fl-settings-group' ); ?>
+	<?php $register_display= get_option('fl_register_display'); 
+    settings_fields( 'fl-settings-group' ); 
+    do_settings_sections( 'fl-settings-group' ); ?>
     <table class="form-table">
         <tr valign="top">
-        <th scope="row">Login URL (Leave blank for default)</th>
+        <th scope="row">Disable register button</th>
+        <td><input type="checkbox" name="fl_register_display" value = "display_register" <?php if ($register_display == true){ ?> checked=true <?php } ?> /></td>
+        <td>Select to stop showing the register button in the element</td>
+        </tr>
+        
+        <tr valign="top">
+        <th scope="row">Login URL Suffix</th>
         <td><input type="text" name="fl_login_url" value="<?php echo get_option('fl_login_url');?>" /></td>
-        <td>The URL for your login page, will default to YOURSITEURL/wp-admin. To set an external URL (not this website) make sure to enter the full URL, http inc.</td>
+        <td>The URL for your login page, will automatically append to your site URL, to enter an external URL (not this website) include http://</td>
         </tr>
          
         <tr valign="top">
-        <th scope="row">User Registration URL</th>
+        <th scope="row">User Registration URL Suffix</th>
         <td><input type="text" name="fl_register_url" value="<?php echo get_option('fl_register_url'); ?>" /></td>
-        <td>The URL for your registration page, will default to YOURSITEURL//wp-login.php?action=register&redirect_to=. To set an external URL (not this website) make sure to enter the full URL, http inc.</td>
+        <td>The URL for your registration page, will automatically append to your site URL, to enter an external URL (not this website) include http://</td>
         </tr>
         
         <tr valign="top">
@@ -132,6 +141,7 @@ function floating_login() {
 	else{
 		$login_url = get_option('fl_login_url');
 		$register_url = get_option('fl_register_url');
+		$register_display = get_option('fl_register_display');
 		?>
     	 <div class="login-float-container"
          style="background-color:<?php echo get_option('fl_bg_color'); ?>;
@@ -143,6 +153,7 @@ function floating_login() {
 				else{
                		echo get_option('fl_login_url');}?>"> Log-in</a>
 			</div>
+            <?php if ($register_display !== "display_register"){ ?>
         	<p style="color:<?php echo get_option('fl_text_color'); ?>;";
              class="login-float-login">/</p>
        		<div class="login-float-register" >
@@ -151,8 +162,10 @@ function floating_login() {
 				else{
 					echo get_option('fl_register_url'); }?>" > Register</a>
 			</div>
+            <?php } ?>
 		</div>
     <?php
+			
 	}
  
 }
