@@ -53,4 +53,8 @@ A floating element that either displays login/ register or logout, depending on 
 = 1.0.7 =
 * Added ability to disable the register button
 * Adjusted the help tips to be easier to understand
-* Fix for options not saving 
+* Fix for options not saving
+
+= 1.0.8 =
+* Fix for links not working on non home page pages
+* Added options to link off to external sites for login and register 

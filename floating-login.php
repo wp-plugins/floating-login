@@ -3,7 +3,7 @@
 	Plugin Name: Floating login
 	Plugin URI: http://www.inspired-plugins.com/
 	Description: Displays a login/register floating element
-	Version: 1.0.7
+	Version: 1.0.8
 	Author: Inspired Information Services
 	Author URI: www.inspired-is.com
 
@@ -43,6 +43,8 @@ function register_mysettings() {
 	register_setting( 'fl-settings-group', 'fl_text_color' );
 	register_setting( 'fl-settings-group', 'fl_border_width' );
 	register_setting( 'fl-settings-group', 'fl_register_display');
+	register_setting( 'fl-settings-group', 'fl_login_external');
+	register_setting( 'fl-settings-group', 'fl_register_external');
 
 }
 
@@ -53,26 +55,41 @@ function fl_settings_page() {
 
 <form method="post" action="options.php">
 	<?php $register_display= get_option('fl_register_display'); 
+	$login_external= get_option('fl_login_external'); 
+	$register_external= get_option('fl_register_external');
     settings_fields( 'fl-settings-group' ); 
     do_settings_sections( 'fl-settings-group' ); ?>
     <table class="form-table">
+    <tr valign="top">
+   
+        <th scope="row">External Login URL</th>
+        <td><input type="checkbox" name="fl_login_external" value = "login_external" <?php if ($login_external == true){ ?> checked=true <?php } ?> /></td>
+        <td>Tick this if the login page you are linking to is not part of this site, be sure to include http:// in your url</td>
+        </tr> 
+   
+        <tr valign="top">
+        <th scope="row">Login URL Suffix</th>
+        <td><input type="text" name="fl_login_url" value="<?php echo get_option('fl_login_url');?>" /></td>
+        <td>The URL for your login page, will automatically append to your site URL</td>
+        </tr>
+        
+        <tr valign="top">
+        <th scope="row">External Registration URL</th>
+        <td><input type="checkbox" name="fl_register_external" value = "register_external" <?php if ($register_external == true){ ?> checked=true <?php } ?> /></td>
+        <td>Tick this if the registration page you are linking to is not part of this site, be sure to include http:// in your url</td>
+        </tr> 
+        
         <tr valign="top">
         <th scope="row">Disable register button</th>
         <td><input type="checkbox" name="fl_register_display" value = "display_register" <?php if ($register_display == true){ ?> checked=true <?php } ?> /></td>
         <td>Select to stop showing the register button in the element</td>
         </tr>
-        
-        <tr valign="top">
-        <th scope="row">Login URL Suffix</th>
-        <td><input type="text" name="fl_login_url" value="<?php echo get_option('fl_login_url');?>" /></td>
-        <td>The URL for your login page, will automatically append to your site URL, to enter an external URL (not this website) include http://</td>
-        </tr>
-         
+              
         <tr valign="top">
         <th scope="row">User Registration URL Suffix</th>
         <td><input type="text" name="fl_register_url" value="<?php echo get_option('fl_register_url'); ?>" /></td>
-        <td>The URL for your registration page, will automatically append to your site URL, to enter an external URL (not this website) include http://</td>
-        </tr>
+        <td>The URL for your registration page, will automatically append to your site URL</td>
+        </tr>       
         
         <tr valign="top">
         <th scope="row">Background Colour</th>
@@ -142,6 +159,8 @@ function floating_login() {
 		$login_url = get_option('fl_login_url');
 		$register_url = get_option('fl_register_url');
 		$register_display = get_option('fl_register_display');
+		$login_external= get_option('fl_login_external'); 
+		$register_external= get_option('fl_register_external');
 		?>
     	 <div class="login-float-container"
          style="background-color:<?php echo get_option('fl_bg_color'); ?>;
@@ -149,23 +168,37 @@ function floating_login() {
          border-width:<?php echo get_option('fl_border_width'); ?>;">
 			<div class="login-float-login" > 
    				<a style="color:<?php echo get_option('fl_text_color');?>"
-				href=" <?php if (empty($login_url)) {echo 'wp-admin';}
+				href=" <?php if (empty($login_url)) {echo site_url(). '/wp-admin';}
 				else{
-               		echo get_option('fl_login_url');}?>"> Log-in</a>
+					if ($login_external == "login_external"){
+						echo get_option('fl_login_url'); 
+					}
+					else {
+               		echo site_url(). "/" . get_option('fl_login_url');}}?>"> Log-in</a>
 			</div>
+            
             <?php if ($register_display !== "display_register"){ ?>
         	<p style="color:<?php echo get_option('fl_text_color'); ?>;";
              class="login-float-login">/</p>
        		<div class="login-float-register" >
    				<a style="color:<?php echo get_option('fl_text_color'); ?>;";
-                href=" <?php if (empty($register_url)) {echo '/wp-login.php?action=register&redirect_to=';}
-				else{
-					echo get_option('fl_register_url'); }?>" > Register</a>
+                href=" <?php if (empty($register_url)) {echo site_url(). '/wp-login.php?action=register&redirect_to=';}
+			
+				else if
+					 ($register_external === "register_external"){
+						echo get_option('fl_register_url'); 
+					}
+					
+					else{
+					echo site_url(). "/" .get_option('fl_register_url'); 
+					}
+					
+					?>"> Register </a>
+                   <?php } ?> 
 			</div>
-            <?php } ?>
+            <?php   ?>
 		</div>
     <?php
-			
+			}
+
 	}
- 
-}
