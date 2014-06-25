@@ -28,33 +28,33 @@ A floating element that either displays login/ register or logout, depending on 
 
 == Changelog ==
 
-= 1.0.0 =
-* Plugin created and uploaded to wordpress plugins directory
-
-= 1.0.1 =
-* Bug fixes and readme updated
-
-= 1.0.2 =
-* Major Bug fixes and screenshots added
-
-= 1.0.3 =
-* Minor bug fixes 
-
-= 1.0.4 =
-* Some bug fixes and optimization
-* Removed screenshots from download
-
-= 1.0.5 =
-* Yet more bug fixes
-
-= 1.0.6 =
-* Fix for non admin users being locked out of back end
+= 1.0.8 =
+* Fix for links not working on non home page pages
+* Added options to link off to external sites for login and register
 
 = 1.0.7 =
 * Added ability to disable the register button
 * Adjusted the help tips to be easier to understand
 * Fix for options not saving
 
-= 1.0.8 =
-* Fix for links not working on non home page pages
-* Added options to link off to external sites for login and register 
+= 1.0.6 =
+* Fix for non admin users being locked out of back end
+
+= 1.0.5 =
+* Yet more bug fixes
+
+= 1.0.4 =
+* Some bug fixes and optimization
+* Removed screenshots from download
+
+= 1.0.3 =
+* Minor bug fixes
+
+= 1.0.2 =
+* Major Bug fixes and screenshots added
+
+= 1.0.1 =
+* Bug fixes and readme updated
+
+= 1.0.0 =
+* Plugin created and uploaded to wordpress plugins directory
