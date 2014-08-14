@@ -27,6 +27,9 @@ A floating element that either displays login/ register or logout, depending on 
 3. Settings Page
 
 == Changelog ==
+= 1.0.9 =
+* cleaned up and fixed the CSS to comply the W3C standards
+* Removed the open sans google font, will now go with the theme default
 
 = 1.0.8 =
 * Fix for links not working on non home page pages
