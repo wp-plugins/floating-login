@@ -31,6 +31,7 @@ function fl_create_menu() {
 	//create new top-level menu
 	add_options_page('Floating Login Settings', 'Floating Login Settings', 'activate_plugins', __FILE__, 'fl_settings_page');
 
+
 }
 
 
@@ -38,23 +39,29 @@ function register_mysettings() {
 	//register our settings
 	register_setting( 'fl-settings-group', 'fl_login_url' );
 	register_setting( 'fl-settings-group', 'fl_register_url' );
+	register_setting( 'fl-settings-group', 'fl_profile_url' );
+	register_setting( 'fl-settings-group', 'fl_logout_url');
 	register_setting( 'fl-settings-group', 'fl_bg_color' );
 	register_setting( 'fl-settings-group', 'fl_border_color' );
 	register_setting( 'fl-settings-group', 'fl_text_color' );
 	register_setting( 'fl-settings-group', 'fl_border_width' );
 	register_setting( 'fl-settings-group', 'fl_register_display');
-	register_setting( 'fl-settings-group', 'fl_login_external');
-	register_setting( 'fl-settings-group', 'fl_register_external');
+	register_setting( 'fl-settings-group', 'fl_profile_display');
+	register_setting( 'fl-settings-group', 'fl_hover_color');
+	
 
 }
 
 function fl_settings_page() {
+	wp_enqueue_script( 'fl_admin_script', plugins_url('jquery.js', __FILE__), array( 'wp-color-picker' ) );
+	wp_enqueue_style( 'wp-color-picker' );
 ?>
 <div class="wrap">
 <h2>Floating Login Settings</h2>
 
-<form method="post" action="options.php">
+<form name="fl_options" method="post" action="options.php">
 	<?php $register_display= get_option('fl_register_display'); 
+	$profile_display= get_option('fl_profile_display'); 
 	$login_external= get_option('fl_login_external'); 
 	$register_external= get_option('fl_register_external');
     settings_fields( 'fl-settings-group' ); 
@@ -62,22 +69,17 @@ function fl_settings_page() {
     <table class="form-table">
     <tr valign="top">
    
-        <th scope="row">External Login URL</th>
-        <td><input type="checkbox" name="fl_login_external" value = "login_external" <?php if ($login_external == true){ ?> checked=true <?php } ?> /></td>
-        <td>Tick this if the login page you are linking to is not part of this site, be sure to include http:// in your url</td>
-        </tr> 
-   
         <tr valign="top">
-        <th scope="row">Login URL Suffix</th>
-        <td><input type="text" name="fl_login_url" value="<?php echo get_option('fl_login_url');?>" /></td>
-        <td>The URL for your login page, will automatically append to your site URL</td>
+        <th scope="row">Login URL</th>
+        <td><input type="text" name="fl_login_url" value="<?php echo get_option('fl_login_url');?>" style="width:400px;"/></td>
+        <td>Replace the login URL (this must be an absolute link i.e. http://)
         </tr>
         
         <tr valign="top">
-        <th scope="row">External Registration URL</th>
-        <td><input type="checkbox" name="fl_register_external" value = "register_external" <?php if ($register_external == true){ ?> checked=true <?php } ?> /></td>
-        <td>Tick this if the registration page you are linking to is not part of this site, be sure to include http:// in your url</td>
-        </tr> 
+        <th scope="row">Logout URL</th>
+        <td><input type="text" name="fl_logout_url" value="<?php echo get_option('fl_logout_url');?>" style="width:400px;"/></td>
+        <td>Replace the logout URL (this must be an absolute link i.e. http://)
+        </tr>
         
         <tr valign="top">
         <th scope="row">Disable register button</th>
@@ -85,26 +87,42 @@ function fl_settings_page() {
         <td>Select to stop showing the register button in the element</td>
         </tr>
               
+        <tr valign="top" class="fl_user_reg_url_row">
+        <th scope="row">User Registration URL</th>
+        <td><input type="text" name="fl_register_url" value="<?php echo get_option('fl_register_url'); ?>" style="width:400px;"/></td>
+        <td>Replace the Registration URL (this must be an absolute link i.e. http://)</td>
+        </tr>  
+        
         <tr valign="top">
-        <th scope="row">User Registration URL Suffix</th>
-        <td><input type="text" name="fl_register_url" value="<?php echo get_option('fl_register_url'); ?>" /></td>
-        <td>The URL for your registration page, will automatically append to your site URL</td>
+        <th scope="row">Disable Profile button</th>
+        <td><input type="checkbox" name="fl_profile_display" value = "display_profile" <?php if ($profile_display == true){ ?> checked=true <?php } ?> /></td>
+        <td>Select to stop showing the profile button in the element</td>
+        </tr>
+              
+        <tr valign="top" class="fl_user_pro_url_row">
+        <th scope="row">User Profile URL</th>
+        <td><input type="text" name="fl_profile_url" value="<?php echo get_option('fl_profile_url'); ?>" style="width:400px;"/></td>
+        <td>Replace the Profile URL (this must be an absolute link i.e. http://)</td>
         </tr>       
         
         <tr valign="top">
         <th scope="row">Background Colour</th>
-        <td><input type="text" name="fl_bg_color" value="<?php echo get_option('fl_bg_color'); ?>" /></td>
-        <td>To return any of these fields to default, Just erase the data in them and save.</td>
+        <td><input type="text" class="color-field" name="fl_bg_color" value="<?php echo get_option('fl_bg_color'); ?>" /></td>
         </tr>
         
         <tr valign="top">
         <th scope="row">Border Colour</th>
-        <td><input type="text" name="fl_border_color" value="<?php echo get_option('fl_border_color'); ?>" /></td>
+        <td><input type="text" class="color-field" name="fl_border_color" value="<?php echo get_option('fl_border_color'); ?>" /></td>
         </tr>
         
         <tr valign="top">
         <th scope="row">Text Colour</th>
-        <td><input type="text" name="fl_text_color" value="<?php echo get_option('fl_text_color'); ?>" /></td>
+        <td><input type="text" class="color-field" name="fl_text_color" value="<?php echo get_option('fl_text_color'); ?>" /></td>
+        </tr>
+        
+        <tr valign="top">
+        <th scope="row">Hover Colour</th>
+        <td><input type="text" class="color-field" name="fl_hover_color" value="<?php echo get_option('fl_hover_color'); ?>" /></td>
         </tr>
         
         <tr valign="top">
@@ -113,10 +131,9 @@ function fl_settings_page() {
         </tr>
         
     </table>
-    
+    <br />
+    <b> If you like this plugin (or even if you don't) please leave a review <a href="https://wordpress.org/support/view/plugin-reviews/floating-login">here</a>.</b>
     <?php submit_button(); ?>
-    <a href=mailto:enquiries@inspired-plugins.com><div class="button button-primary">Email Us</div></div></a>
-
 </form>
 </div>
 <?php } 
@@ -133,7 +150,13 @@ function safely_add_stylesheet() {
 
 add_action('wp_head', 'floating_login', 20 );
 function floating_login() { 
-	/** Logout element **/
+	?><style>
+		.fl_login_a:hover,
+		.fl_login_a:hover{
+			color: <?php echo get_option('fl_hover_color'); ?>!important;	
+		}
+    </style><?php
+	/** Logout /profile element**/
     if ( is_user_logged_in() ) { ?>
     	<div class="login-float-container"
         style="background-color:<?php echo get_option('fl_bg_color'); ?>; 
@@ -145,10 +168,25 @@ function floating_login() {
             0px 
             <?php } ?>
             ">
+            <?php if(get_option('fl_register_display') != "display_register"){ //if the register link is enabled?>
 			<div class="login-float-login" >
             <a style="color:<?php echo get_option('fl_text_color');?>"
-				href="<?php echo wp_logout_url( home_url() ); ?>" 
-                title="Logout">Logout</a>
+				href="<?php if(get_option('fl_profile_url') != ""){ //if user has entered a link
+					echo (get_option('fl_profile_url'));
+				} else{//otherwise use default link
+					echo( get_edit_user_link());
+				};?>" 
+                title="Profile"
+                class="fl_login_a">Profile</a>
+			</div>
+            <p style="color:<?php echo get_option('fl_text_color'); ?>;";
+            class="login-float-login">/</p> <!-- Seperator -->
+			<?php } ?>
+            <div class="login-float-login" >
+            <a style="color:<?php echo get_option('fl_text_color'); //Logout link?>"
+				href="<?php if(get_option('fl_logout_url') != ""){echo (get_option('fl_logout_url'));} else {echo(wp_logout_url( home_url() ));} ?>" 
+                title="Logout"
+                class="fl_login_a">Logout</a>
 			</div>
 		</div>
     
@@ -162,37 +200,32 @@ function floating_login() {
 		$login_external= get_option('fl_login_external'); 
 		$register_external= get_option('fl_register_external');
 		?>
-    	 <div class="login-float-container"
-         style="background-color:<?php echo get_option('fl_bg_color'); ?>;
-         border-color:<?php echo get_option('fl_border_color'); ?>;
-         border-width:<?php echo get_option('fl_border_width'); ?>;">
+    	<div class="login-float-container"
+        style="background-color:<?php echo get_option('fl_bg_color'); ?>;
+        border-color:<?php echo get_option('fl_border_color'); ?>;
+        border-width:<?php echo get_option('fl_border_width'); ?>;">
+        
 			<div class="login-float-login" > 
    				<a style="color:<?php echo get_option('fl_text_color');?>"
-				href=" <?php if (empty($login_url)) {echo site_url(). '/wp-admin';}
-				else{
-					if ($login_external == "login_external"){
-						echo get_option('fl_login_url'); 
-					}
-					else {
-               		echo site_url(). "/" . get_option('fl_login_url');}}?>"> Log-in</a>
+				class="fl_login_a" href=" <?php 
+				if (empty($login_url)) {//if empty use default login link
+					echo  wp_login_url();
+				}
+				else{//otherwise use given link
+               		echo get_option('fl_login_url');
+				}?>"> Log-in</a>
 			</div>
             
-            <?php if ($register_display !== "display_register"){ ?>
+            <?php if ($register_display !== "display_register"){ //if register link is enabled?>
         	<p style="color:<?php echo get_option('fl_text_color'); ?>;";
              class="login-float-login">/</p>
        		<div class="login-float-register" >
-   				<a style="color:<?php echo get_option('fl_text_color'); ?>;";
-                href=" <?php if (empty($register_url)) {echo site_url(). '/wp-login.php?action=register&redirect_to=';}
+   				<a class="fl_login_a" style="color:<?php echo get_option('fl_text_color'); ?>;";
+                href=" <?php if (empty($register_url)) {echo wp_registration_url();} // if  reg link is empty then just use default wordpress link
 			
-				else if
-					 ($register_external === "register_external"){
-						echo get_option('fl_register_url'); 
-					}
-					
-					else{
-					echo site_url(). "/" .get_option('fl_register_url'); 
-					}
-					
+				else {
+						echo get_option('fl_register_url'); //otherwise use given link
+					}					
 					?>"> Register </a>
                    <?php } ?> 
 			</div>

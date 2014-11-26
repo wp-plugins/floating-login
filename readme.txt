@@ -1,9 +1,9 @@
 === Floating Login ===
 
-Contributors: fozzyluke123, hammerofpompey
+Contributors: fozzyluke123
 Tags: login, register, floating, box, logout
 Requires at least: 3.0.1
-Tested up to: 4.0.0
+Tested up to: 4.0.1
 Stable tag: trunk,
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,13 +12,19 @@ Floating login/ register element that sticks to the top of the screen and change
 
 == Description ==
 
-A floating element that either displays login/ register or logout, depending on whether the user is logged in. Fully customisable colors, links and properties.
+A really simple to use plugin that will create a floating element that either displays login/ register or logout/profile, depending on whether the user is logged in. Fully customisable colors, links and properties.
 
 == Installation ==
 
 1. Upload `floating-login.zip` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the \'Plugins\' menu in WordPress
 3. Customise though the floating login panel under settings in your admin area
+
+== FAQ ==
+
+Q - The element doesn't show up anywhere on the front-end. 
+
+A - try changing the z-index of the element so that it isn't showing up below something else. If that doesn't work then disable all plugins and revert back to the default theme to see if there is a conflict.
 
 == Screenshots ==
  
@@ -27,6 +33,12 @@ A floating element that either displays login/ register or logout, depending on 
 3. Settings Page
 
 == Changelog ==
+= 1.1.0 =
+* Re-did the settings page - updated the colour selection, changed some settings and added the ability to change the logout and profile url's.
+* Added the profile link to the logged-in element.
+* Added the ability to change the link hover colour.
+* Updated Read-me with FAQ's.
+
 = 1.0.9 =
 * cleaned up and fixed the CSS to comply the W3C standards
 * Removed the open sans google font, will now go with the theme default
