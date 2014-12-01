@@ -22,7 +22,7 @@ A really simple to use plugin that will create a floating element that either di
 
 == Frequently Asked Questions ==
 
-== The element doesn't show up anywhere on the front-end. ==
+= The element doesn't show up anywhere on the front-end. =
 
 Try changing the z-index of the element so that it isn't showing up below something else. If that doesn't work then disable all plugins and revert back to the default theme to see if there is a conflict.
 
