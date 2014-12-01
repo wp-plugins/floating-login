@@ -20,11 +20,11 @@ A really simple to use plugin that will create a floating element that either di
 2. Activate the plugin through the \'Plugins\' menu in WordPress
 3. Customise though the floating login panel under settings in your admin area
 
-== FAQ ==
+== Frequently Asked Questions ==
 
-Q - The element doesn't show up anywhere on the front-end. 
+== The element doesn't show up anywhere on the front-end. ==
 
-A - try changing the z-index of the element so that it isn't showing up below something else. If that doesn't work then disable all plugins and revert back to the default theme to see if there is a conflict.
+Try changing the z-index of the element so that it isn't showing up below something else. If that doesn't work then disable all plugins and revert back to the default theme to see if there is a conflict.
 
 == Screenshots ==
  
@@ -33,6 +33,11 @@ A - try changing the z-index of the element so that it isn't showing up below so
 3. Settings Page
 
 == Changelog ==
+= 1.1.1 =
+* Fix for the "disable register link" button
+* Added the ability to change the login and the logout landing pages
+* Added the ability to diable the element on certain pages
+
 = 1.1.0 =
 * Re-did the settings page - updated the colour selection, changed some settings and added the ability to change the logout and profile url's.
 * Added the profile link to the logged-in element.
