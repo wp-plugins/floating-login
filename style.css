@@ -3,23 +3,20 @@
 *********************************************/
 .login-float-container{
 	border-top:none;
-	margin:0 auto 0 auto;	
 	height:35px;
 	width:150px;
-	position:fixed;
+	min-height:30px;
+	height:auto;
+	min-width:150px;
 	z-index:100;
 	top:0px;
-	right:100px;
 	text-align:center;
-	border-bottom-right-radius:5px;
-	border-bottom-left-radius:5px;
 	border-style:solid;
 	box-shadow:1px 1px 1px #666;
 	font-size:17px;
-	border-top:none;
 	border-width:1px;
 	background-color:#fff;
-
+	position:fixed;
 }
 .login-float-login,
 .login-float-register

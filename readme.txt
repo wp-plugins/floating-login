@@ -3,7 +3,7 @@
 Contributors: fozzyluke123
 Tags: login, register, floating, box, logout
 Requires at least: 3.0.1
-Tested up to: 4.0.1
+Tested up to: 4.1
 Stable tag: trunk,
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -33,6 +33,11 @@ Try changing the z-index of the element so that it isn't showing up below someth
 3. Settings Page
 
 == Changelog ==
+= 1.2.1 =
+* Added option to change what corner element shows in
+* Added option to change the register text to show "register" or the users user name
+* Cleaned up the files and code a bit
+
 = 1.1.1 =
 * Fix for the "disable register link" button
 * Added the ability to change the login and the logout landing pages
