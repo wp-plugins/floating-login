@@ -3,7 +3,7 @@
 	Plugin Name: Floating login
 	Plugin URI: http://www.inspired-plugins.com/
 	Description: Displays a login/register floating element
-	Version: 1.1.1
+	Version: 1.2.1
 	Author: Inspired Information Services
 	Author URI: www.inspired-is.com
 
